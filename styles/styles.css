@@ -1,0 +1,74 @@
+/* font declarations */
+@font-face {
+    font-family: 'Next Sunday'; /* font name */
+    src: url('fonts/next_sunday/Next\ Sunday.otf') format('opentype'),
+         url('fonts/next_sunday/Next\ Sunday.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Hey Comic'; /* font name */
+    src: url('fonts/hey_comic/Hey\ Comic.otf') format('opentype'),
+         url('fonts/hey_comic/Hey\ Comic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    background-color: #b7fcb7;
+}
+
+h1 {
+    text-align: center;
+    font-family: Next Sunday;
+}
+
+p {
+    text-align: center;
+    font-family: Hey Comic;
+}
+
+/* main content box */
+.mainBox {
+    background-color: #ffec82;
+    border: 3px solid #ebd34b;
+    border-radius: 15px;
+
+    width: 30%;
+    height: 40%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* start button */
+.start {
+    background-color: #bf7d4b;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    font-family: Next Sunday;
+    text-align: center;
+
+    width: 5%;
+    height: 5%;
+    
+    position: absolute;
+    top: 70%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.start:hover {
+    color: green;
+}
