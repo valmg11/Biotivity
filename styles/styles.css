@@ -17,7 +17,7 @@
 }
 
 body {
-    background-image: url("../media/biotivity_game_background.png");
+    background-image: url("../media/LoadingBG.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -54,6 +54,27 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+/*Index Logo*/
+.indexLogo {
+    background-color: none;
+    width: 30%;
+    height: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*Index Plants Gifs*/
+.indexPlants{
+    background-color: none;
+    width: 60%;
+    height: 30%;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 /* start button */
 .start {
@@ -70,8 +91,8 @@ p {
     height: 5%;
     
     position: absolute;
-    top: 70%;
-    left: 65%;
+    top: 75%;
+    left: 50%;
     transform: translate(-50%, -50%);
 
     display: flex;
