@@ -16,14 +16,14 @@
     font-display: swap;
 }
 
-body {
-    background-image: url("../media/biotivity_game_background.png");
+.introScreen {
+    background-image: url("../media/LoadingBG.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
-.introScreen {
-    background-image: url("../media/LoadingBG.png");
+body {
+    background-image: url("../media/biotivity_game_background.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -48,13 +48,11 @@ p {
 
 /* main content box */
 .mainBox {
-    background-color: #ffec82;
-    border: 3px solid #ebd34b;
-    border-radius: 15px;
-
-    width: 30%;
-    height: 40%;
-
+    background-color: #FFDF5E;
+    border-radius: 26px;
+    width: 60%;
+    height: 50%;
+    padding: 20px 50px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -113,6 +111,9 @@ p {
 /* Navigational Buttons */
 .navbuttons {
     background-color: none;
+    position: absolute;
+    top: 20px;
+    left: 30px;
     width: 40%;
     height: 10%;
     display: flex;
@@ -205,4 +206,45 @@ p {
     position: absolute;
     top: 0;
     right: 0;
+}
+
+/* TaskList Button */
+.notepadButton{
+    position: absolute;
+    top: 230px;
+    left: 0;
+}
+/* Status Bar, Delete & Plant Buttons */
+.plantInfo{
+    position: absolute;
+    bottom: 10px;
+    left: 200px;
+    display: flex;
+    gap: 20px;
+}
+
+/* Lucky */
+.lucky{
+    position: absolute;
+    bottom: -3px;
+    right: -10px;
+}
+
+/* Plants */
+.plants{
+    position: absolute;
+    bottom: 80px;
+    left:400px;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.plantIcons {
+    position: absolute;
+    bottom: 300px;
+    left: 450px;
+    display: flex;
+    flex-direction: row;
+    gap: 210px;
 }
