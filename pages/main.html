@@ -11,10 +11,26 @@
     <!--NavButtons-->
     <div class="navbuttons">
         <a href="options.html"><img src="../media/SettingsButton.png" /></a>
-        <img src="../media/BGButton.png" />
-        <img src="../media/SaveButton.png" />
+        <img src="../media/BGButton.png" onclick="changeTheme()"/>
+        <a href="Save1.html"><img src="../media/SaveButton.png" /></a>
 
     </div>
+
+<script>
+    let altTheme = false;
+    function changeTheme() {
+        var alt = "url('../media/HomeAlt.png')";
+        var norm = "url('../media/biotivity_game_background.png')";
+        if (altTheme == true) {
+            altTheme = false;
+            document.body.style.backgroundImage = norm;  
+        } else {
+            document.body.style.backgroundImage = alt;
+            altTheme = true;
+        }
+       
+    }
+</script>
     <!--Day Counter-->
     <div class="sun">
         <img src="../media/SunDayCounter.png" />
