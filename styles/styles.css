@@ -1,3 +1,5 @@
+/* Behind-The-Scenes */
+
 /* font declarations */
 @font-face {
     font-family: 'Next Sunday'; /* font name */
@@ -23,17 +25,16 @@
 }
 
 body {
-    background-image: url("../media/biotivity_game_background.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 
-.logo {
-    width: 95%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background-image: url("../media/biotivity_game_background.png");
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 h1 {
@@ -41,75 +42,267 @@ h1 {
     font-family: Next Sunday;
 }
 
+h2 {
+    font-family: Next Sunday;
+    color:#da871a;
+}
+
 p {
     text-align: center;
     font-family: Hey Comic;
 }
 
-/* main content box */
-.mainBox {
-    background-color: #FFDF5E;
-    border-radius: 26px;
-    width: 60%;
-    height: 50%;
-    padding: 20px 50px;
+/*---------- Game UX ----------*/
+/*Note From Lillian: This is the mapping for things the user will directly interact with.*/
+
+/* Lucky's Default */
+.lucky{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-/*Logo*/
-.centerImg {
-    background-color: none;
-    width: 30%;
-    height: 40%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: -3px;
+    right: -10px;
 }
 
-/*Plants Gifs*/
-.indexPlants{
-    background-color: none;
+/* Help */
+
+.lucky-greeting {
+    align-self: flex-start;
+    text-align: left;
     width: 100%;
-    height: 30%;
-    position: absolute;
-    top: 88%;
-    left: 64%;
-    transform: translate(-50%, -50%);
+    margin: 0;
+    padding-left: 5px;
 }
 
-/* start button */
-.start {
-    background-color: #bf7d4b;
-    color: white;
-    text-decoration: none;
+.questions-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 80%;
+}
+
+.q-btn {
+    width: 90%;
+    padding: 8px;
+    font-family: 'Hey Comic';
+    font-size: 20px;
+    color:#bf7d4b;
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    font-family: Next Sunday;
-    text-align: center;
+    background-color:#fdefbd;
+    margin: 10px;
 
-    width: 5%;
-    height: 5%;
-    
-    position: absolute;
-    top: 73%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transition: transform 0.4s ease;
+}
 
+.q-btn:active {
+    animation: Boing 0.3s ease-in-out;
+}
+
+#Greet1 {
+    display: inline;
+}
+
+#Greet2 {
+    display:inline;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.textpop {
+    opacity: 1 !important;
+}
+
+/* Game EXP Icon Logic */
+
+.EXPIcons {
+    width: 100%;
+    margin-bottom: 20px;
     display: flex;
+    justify-content: center;
+    z-index: 20;
+}
+
+/* Alignment above plants */
+
+[class^="expspot-"] {
+    position: absolute;
+    bottom: 50%;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+[class^="expspot-"] img {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    display: none;
+}
+
+.expspot-1 {
+    left: 10%;
+}
+
+.expspot-2 {
+    left: 30%;
+}
+
+.expspot-3 {
+    left: 50%;
+}
+
+.expspot-4 {
+    left: 70%;
+}
+
+/* Reveal/Hide Icon Logic */
+
+.show-lvlup {
+    display: block !important;
+}
+
+.show-thirst {
+    display: block !important;
+}
+
+/* Save Screen */
+
+.saving {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10001;
+
+    background-image: url("../media/LoadingBG.png");
+    background-size: cover;
+    background-position: center;
+
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
     justify-content: center;
     align-items: center;
 }
 
-.start:hover {
-    color: green;
+.saving.active {
+    display: flex;
+    opacity: 1;
 }
 
-/* Navigational Buttons */
-.navbuttons {
+.save-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.saveicon {
+    width: 200px;
+    height: auto;
+}
+
+#savetxt {
+    font-family: Next Sunday;
+    color:#bf7d4b;
+    font-size: 32px;
+    margin: 0;
+}
+/*---------- Game UI ----------*/
+/*Note from Lillian: These are the buttons and menus! CRUCIAL, DO NOT REMOVE OR ALTER!*/
+
+#title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    transition: opacity 1s ease, visibility 1s;
+}
+
+#title img:not(.logo){
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.logo {
+    width: 500px;
+    height: auto;
+    position: relative;
+    z-index: 3;
+}
+
+.Loadtxt {
+    position: relative;
+    font-family: Next Sunday;
+    color:#bf7d4b;
+    margin: 0;
+    font-size: 28px;
+}
+
+.title-items {
+    position: absolute;
+    text-align: center;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    width: 80%;
+    text-align: center;
+}
+
+#title.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.flower-row {
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    bottom: -400px;
+    left: 0;
+    margin: 0;
+    z-index: 9999;
+    
+    /* This handles the horizontal spread */
+    display: flex;
+    justify-content: space-around; 
+    align-items: flex-end;         
+    pointer-events: none; 
+}
+
+.flower-row img {
+    /* These resets stop them from stacking */
+    position: relative !important; 
+    left: auto !important;
+    transform: none !important;
+    
+    width: 240px !important; 
+    height: auto;
+    object-fit: contain !important;
+}
+
+/* Settings, Backgrounds, and Save Buttons */
+.TopButtons {
     background-color: none;
     position: absolute;
     top: 20px;
@@ -118,87 +311,153 @@ p {
     height: 10%;
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
+    z-index: 10;
+    cursor: pointer;
 }
 
-/* navigation bar */
-.navbar {
-    width: 100%;
-    height: 80px;
-    background-color: #ffec82;
-    border-bottom: 3px solid #ebd34b;
+/* Status Bar, Delete & Plant Buttons */
+.BottomMenu{
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+}
 
-    position: fixed;
+.BottomButtons{
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    left: 20px;
+}
+
+.EXPbar {
+    position: relative;
+    width: 1000px;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+
+.EXPbar img {
+    position: absolute;
     top: 0;
     left: 0;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 0 30px;
-    box-sizing: border-box;
-    z-index: 1000;
+    width: 100%;
+    height: auto;
 }
 
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.EXPbar img:nth-child(1) {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    z-index: 1;
 }
 
-.nav-logo {
-    width: 45px;
-    height: 45px;
+.EXPbar img:nth-child(2) {
+    position: absolute;
+    width: 5%;
+    height: 55%;
+    left: 16px;
+    top: 12px;
+    border-radius: 15px 40px 0px 5px;
+    z-index: 2;
+    
 }
 
-.nav-title {
-    font-family: 'Next Sunday';
-    font-size: 28px;
-    color: #bf7d4b;
+.EXPbar img:nth-child(3) {
+    position: absolute;
+    width: 88%;
+    height: 50px;
+    top: 10px;
+    left: 15px;
+    z-index: 3;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
+.expcounter {
+    position: absolute;
+    font-family: Next Sunday;
+    font-weight: bold;
+    font-size: 25px;
+    left: 92.5%;
+    color:#da871a;
+    text-shadow: 2px 0px 0 #fdefbd;
+    z-index: 4;
 }
 
-.nav-links li a {
-    text-decoration: none;
-    font-family: 'Hey Comic';
-    font-size: 20px;
-    color: #bf7d4b;
-    transition: color 0.2s ease;
+.mainlogo img{
+    position: static;
+    width: 150px;
+    height: auto;
 }
 
-.nav-links li a:hover {
-    color: green;
+.TopButtons img, .BottomButtons img {
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.page-content {
-    padding-top: 120px;
-    text-align: center;
+.TopButtons img:active, .BottomButtons img:active {
+    animation: Boing 0.3s ease-in-out;
 }
 
-.taskPage {
-    padding-left: 80px;
+/* --- Plant Spot Logic --- */
+/* Note from Lillian: This is the garden bed area!*/
+
+.plant-style {
+    transform-origin: bottom center;
+
+    animation: sway 4s ease-in-out infinite;
+}
+
+[class^="plantspot-"] {
+    position: absolute;
+    bottom: 20%;
+    width: 200px;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
 }
 
-.task1 {
-    display: flex;
-    padding-top: 40px;
+/* Alignment Across Field */
+
+.plantspot-1 {
+    left: 15%;
 }
 
-.buttonImg {
-    /* padding-top: 40px; */
-    padding-left: 350px;
-    width: 50px;
-    height: 50px;
+.plantspot-1 .plant-style {
+    left: 20%;
+}
+
+.plantspot-2 {
+    left: 35%;
+}
+
+.plantspot-2 .plant-style {
+    left: 15%;
+}
+
+.plantspot-3 {
+    left: 55%;
+}
+
+.plantspot-4 {
+    left: 75%;
+}
+
+.dirtpatch {
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+}
+
+.plant-style {
+    position: absolute;
+    z-index: 5;
+    bottom: 15px;
 }
 
 /* Day Counter */
@@ -206,54 +465,301 @@ p {
     position: absolute;
     top: 0;
     right: 0;
+
 }
 
-/* TaskList Button */
-.notepadButton{
+.sun img {
+    Width: 100%;
+}
+
+.daytrack{
     position: absolute;
-    top: 230px;
+    font-family: 'Next Sunday';
+    font-size: 70px;
+    color: #da871a;
+    margin: 0;
+    top: 5%;
+    left: 60%;
+    transform: translate (-50%, -50%);
+}
+
+.lucky {
+    position: absolute;
+    top: 80%;
+}
+
+.lucky:hover {
+    transform-origin: center bottom;
+
+    animation: wiggle 0.5s ease-in-out infinite;
+}
+
+/* TaskList */
+
+.notepad {
+    position: absolute;
+    top: 15%;
+    left: -420px;
+    z-index: 60;
+    transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), ease;
+    cursor: pointer;
+}
+
+.notepad.is-open {
+    left: 20px;
+}
+
+.notepad img {
+    width: 500px;
+    height: auto;
+    cursor: pointer;
+}
+
+#taskwindow {
+    position: absolute;
+    top: 60px;
+    left: 80px;
+    width: 320px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.notepad.is-open #taskwindow {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.notepad:not(.is-open):hover {
+    transform-origin: center right;
+    animation: wiggle 1s ease-in-out infinite;
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.task-tool-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.task-tool-btn img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 40px;
+    object-fit: contain;
+
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.task-tool-btn img:active {
+    animation: Boing 0.3s ease-in-out;
+}
+
+.task-tool-btn img, .task-btn-group button img {
+    width: 100%;
+    height: 100%;
+    max-width: 40px;
+    display: block;
+
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+}
+
+.task-header h1 {
+    flex-grow: 1;
+    font-size: 24px;
+    margin: 0 10px
+}
+
+/* Task Item Styling */
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Hey Comic';
+    padding: 10px 0;
+}
+
+.task-btn-group {
+    display: flex;
+    gap: 5px;
+}
+
+.task-btn-group button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
+
+.task-btn-group button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Watering Can */
+
+.watering{
+    position: absolute;
+    top: 65%;
+    left: 95%;
+    z-index: 50;
+
+    transition: transform 0.3s ease-in-out;
+    transform-origin: bottom left;
+    cursor: pointer;
+}
+
+.watering:hover {
+    transform: rotate(-50deg);
+}
+
+
+/*---- Game Functionality Elements ----*/
+/* --- Note from Lillian: Please do not alter anything below here without consulting me first! Website functionality relies on this section!*/
+
+/* Switching Watering Can Modes */
+
+.watering-mode {
+    cursor: crosshair;
+}
+
+.watering.mode-tool {
+    transform: rotate(-50deg) scale(1.2);
+    position: fixed;
+    pointer-events: none;
+    transform-origin: top left;
+    z-index: 200;
+}
+
+#luckyhelp {
+    position: fixed;
+    top: 0;
     left: 0;
-}
-/* Status Bar, Delete & Plant Buttons */
-.plantInfo{
-    position: absolute;
-    bottom: 10px;
-    left: 200px;
-    display: flex;
-    gap: 20px;
-}
-
-/* Lucky */
-.lucky{
-    position: absolute;
-    bottom: -3px;
-    right: -10px;
+    Width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: background 0.4s ease;
 }
 
-/* Plants */
-.plants{
-    position: absolute;
-    bottom: 80px;
-    left:400px;
-    display: flex;
-    flex-direction: row;
-    gap: 100px;
+#luckyhelp.active {
+    background: rgba(0, 0, 0, 0.4);
 }
 
-.plantIcons {
-    position: absolute;
-    bottom: 300px;
-    left: 450px;
-    display: flex;
-    flex-direction: row;
-    gap: 210px;
+#luckyhelp.active .help-box {
+    transform: scale(1);
+    opacity: 1;
 }
 
-.questions{
-    position: absolute;
-    bottom: 30%;
-    right:25%;
+.help-box {
+    background-color:#FFDF5E;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 700px;
+    position: relative;
+    z-index: 999;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+
+    width: 400px;
+
+
     display: flex;
     flex-direction: column;
-    gap:20px;
+    align-items: center;
+    gap: 15px;
+
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+
+.help-box::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    right: 20px;
+
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 30px solid #FFDF5E;
+}
+
+.help-box::after::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: -15px;
+
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 25px solid #FFDF5E;
+}
+
+.jumping-lucky {
+    position: absolute;
+    bottom: -600px;
+    z-index: 1001;
+    right: 0;
+
+    transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#luckyhelp.active .jumping-lucky {
+    bottom: -20px;
+}
+
+.lucky {
+    position: absolute;
+    top: 80%;
+    transition: opacity 0.3s ease;
+}
+
+/* Keyframe Animations */
+
+/* Note from Lillian: Please don't touch the values for the keyframes! It may break the animations. */
+
+@keyframes sway {
+    0% { transform: rotate(-3deg);}
+    50% { transform: rotate(3deg);}
+    100% { transform: rotate(-3deg);}
+}
+
+@keyframes Boing {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+@keyframes wiggle {
+    0% { transform: rotate(-2deg);}
+    25% { transform: rotate(2deg);}
+    50% { transform: rotate(-2deg);}
+    75% { transform: rotate(2deg);}
+    100% { transform: rotate(-2deg);}
 }
