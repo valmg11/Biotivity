@@ -10,6 +10,7 @@
 <body>
 
     <!-- Load In Screen -->
+    <!-- Original concepting by Antoine, expanded upon by Lillian-->
     <div id="title">
         <div class = "title-items">
             <img src="../media/biotivityLogo.png" class="logo">
@@ -38,12 +39,14 @@
                     <hr>
                     <div class="set-item">
                         <h2>Music Volume</h2>
-                        <input type="range" min="0" max="100" value="50";>
+                        <input type="range" min="0" max="100" value="50">
                     </div>
-                    <button id="set-close"><img src="../media/ExitButtonOrange.png"></button>
+                    <button id="set-close">
+                        <img src="../media/ExitButtonOrange.png">
+                    </button>
                 </div>
             </section>
-
+<!-- Background Button Functionality by Antoine -->
             <img src="../media/BGButton.png" onclick="changeTheme()"/>
             
             <section id="save-menu">
@@ -80,8 +83,8 @@
                 <p class="expcounter">0<br>/100</p>
             </div>
         <div class= "BottomButtons">
-            <img src="../media/DeleteButton.png"/>
-            <img src="../media/PlantButton.png"/>
+            <img src="../media/DeleteButton.png" id="btn-delete"/>
+            <img src="../media/PlantButton.png" id="btn-plant"/>
         </div>
     </div>
     
@@ -154,16 +157,15 @@
                 <span id="Greet2" >how can I help ya?</span></h2>
             
             <div class="question-list">
-                <button class="q-btn">How do I water my plants?</button>
-                <button class="q-btn">What IS Biotivity?</button>
-                <button class="q-btn">How do I get rid of a plant?</button>
-
-                <div id="lucky-answer">
-                    <p id="luckyanswertxt"></p>
-                </div>
+                <button class="q-btn" onclick="askLucky('water')">How do I water my plants?</button>
+                <button class="q-btn" onclick="askLucky('biotivity')">What IS Biotivity?</button>
+                <button class="q-btn" onclick="askLucky('delete')">How do I get rid of a plant?</button>
 
             </div>
 
+            <div class="lucky-answer">
+                    <p id="luckyanswertxt"></p>
+            </div>
         </div>
         <img src="../media/LuckyWave.png" class="jumping-lucky">
     </section>
@@ -267,6 +269,44 @@
             greet2.classList.add('textpop');
         }, 600);
     })
+
+    /* Answering Questions! */
+    const questions = document.querySelector('.question-list');
+    const answerbox = document.querySelector ('.lucky-answer');
+    const answertxt = document.querySelector ('#luckyanswertxt');
+    const luckythinker = document.querySelector ('.jumping-lucky');
+    const luckyhead = document.querySelector ('.lucky-greeting');
+
+    function askLucky(topic) {
+        questions.style.display = 'none';
+        luckyhead.style.opacity = '0';
+        luckythinker.src = "../media/LuckyThink.png";
+
+        setTimeout(() => {
+            answerbox.style.display = 'flex';
+
+            if (topic === 'water') {
+                answertxt.innerText = "Why, just click that there watering can and give em a drink! Remember, you can get water fer ya plants by completin' tasks!";
+            } else if  (topic === 'biotivity') {
+                answertxt.innerText = "Biotivity's a productivity-enhancin' gamer-fied task list! Yuh can have a bit o' self-disciplined fun while gettin' yer chores ticked off!";
+            } else if (topic === 'delete') {
+                answertxt.innerText = "Ah, yah wanted to remove one of em'? Just click that there shovel-lookin' button on the bottom - keep in mind, any EXP used up will go with the lil' darlin!";
+            }
+            
+            setTimeout(() => {
+                backTop();
+            }, 3500);
+        });
+    }
+
+    function backTop() {
+        if (answerbox.style.display === 'flex') {
+            answerbox.style.display = 'none';
+            questions.style.display = 'flex';
+            luckyhead.style.opacity = '1';
+            luckythinker.src = "../media/LuckyHappy.png";
+        }
+    }
 
     /* Closing Function */
     luckyDisplay.addEventListener('click', (e) => {
@@ -399,6 +439,67 @@
             }, 800);
         }, 1500);
     });
+
+    /* Settings Popup */
+const settingsboop = document.querySelector('.TopButtons img:first-child');
+const settingsmenu = document.querySelector('#settings-menu');
+const settingsclose = document.querySelector('#set-close');
+
+    settingsboop.addEventListener('click', () => {
+        settingsmenu.style.display = 'flex';
+    });
+
+    settingsclose.addEventListener('click', () => {
+        settingsmenu.style.display = 'none';
+    });
+
+/* Bottom Button Tool Toggling */
+const btnDelete = document.querySelector('#btn-delete');
+const btnPlant = document.querySelector('#btn-plant');
+const gardenArea = document.querySelector('#maingarden');
+
+// Only resets the Plant and Delete states
+function resetBottomTools() {
+    btnDelete.classList.remove('tool-active');
+    btnPlant.classList.remove('tool-active');
+    gardenArea.classList.remove('delete-cursor', 'plant-cursor');
+}
+
+// Delete Button Toggle
+btnDelete.addEventListener('click', () => {
+    const wasActive = btnDelete.classList.contains('tool-active');
+    
+    // If it was on, turn it off. If it was off, clear the other and turn this on.
+    if (wasActive) {
+        resetBottomTools();
+    } else {
+        resetBottomTools();
+        btnDelete.classList.add('tool-active');
+        gardenArea.classList.add('delete-cursor');
+    }
+});
+
+// Plant Button Toggle
+btnPlant.addEventListener('click', () => {
+    const wasActive = btnPlant.classList.contains('tool-active');
+    
+    if (wasActive) {
+        resetBottomTools();
+    } else {
+        resetBottomTools();
+        btnPlant.classList.add('tool-active');
+        gardenArea.classList.add('plant-cursor');
+    }
+});
+
+// Right-click to cancel ONLY these tools
+window.addEventListener('contextmenu', (e) => {
+    // Only prevent default and reset if one of these tools is actually active
+    if (btnDelete.classList.contains('tool-active') || btnPlant.classList.contains('tool-active')) {
+        e.preventDefault();
+        resetBottomTools();
+    }
+});
 
 </script>
 </body>

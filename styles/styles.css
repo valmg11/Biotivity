@@ -72,7 +72,7 @@ p {
     padding-left: 5px;
 }
 
-.questions-list {
+.question-list {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,8 +81,8 @@ p {
 }
 
 .q-btn {
-    width: 90%;
-    padding: 8px;
+    width: 100%;
+    padding: 12px 10px;
     font-family: 'Hey Comic';
     font-size: 20px;
     color:#bf7d4b;
@@ -90,7 +90,7 @@ p {
     border: none;
     border-radius: 10px;
     background-color:#fdefbd;
-    margin: 10px;
+    margin: 3px;
 
     transition: transform 0.4s ease;
 }
@@ -402,6 +402,69 @@ p {
     animation: Boing 0.3s ease-in-out;
 }
 
+#settings-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.set-box {
+    background-color: #FFDF5E;
+    border-radius: 15px;
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+    position: relative;
+}
+
+.set-box h2 {
+    margin-top: 0;
+    color: #bf7d4b;
+}
+
+.set-box hr {
+    border: 1px solid #bf7d4b;
+    margin: 15px 0;
+}
+
+#set-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#set-close img {
+    width: 50px;
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+#set-close img:active {
+    transform: scale(0.9);
+}
+
+/* Toggles for bottom buttons */
+
+.tool-active {
+    transform: scale(1.1);
+    border-radius: 50%;
+}
+
+.delete-mode {
+    cursor: grabbing;
+}
+
+.plant-mode {
+    cursor: cell;
+}
+
 /* --- Plant Spot Logic --- */
 /* Note from Lillian: This is the garden bed area!*/
 
@@ -491,7 +554,7 @@ p {
 .lucky:hover {
     transform-origin: center bottom;
 
-    animation: wiggle 0.5s ease-in-out infinite;
+    animation: wiggle 0.5s infinite;
 }
 
 /* TaskList */
@@ -501,7 +564,7 @@ p {
     top: 15%;
     left: -420px;
     z-index: 60;
-    transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), ease;
+    transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
 }
 
@@ -683,14 +746,13 @@ p {
     z-index: 999;
     transform: scale(0.7);
     opacity: 0;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
 
-    width: 400px;
-
-
+    width: 340px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     gap: 15px;
 
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
@@ -739,6 +801,13 @@ p {
     position: absolute;
     top: 80%;
     transition: opacity 0.3s ease;
+}
+
+#luckyanswertxt {
+    font-family: 'Next Sunday';
+    text-align: 'left';
+    font-size: 30px;
+    color:#da871a;
 }
 
 /* Keyframe Animations */
