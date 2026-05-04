@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="icon" type="image/x-icon" href="./media/leafFavicon.png">
+    <title>Biotivity</title>
+</head>
+<body>
+
+    <!-- Load In Screen -->
+    <!-- Original concepting by Antoine, expanded upon by Lillian-->
+    <div id="title">
+        <div class = "title-items">
+            <img src="../media/biotivityLogo.png" class="logo">
+            <h1 class="Loadtxt">Loading your productivity garden...</h1>
+        </div>
+        <div class = "flower-row">
+                <img src="../media/PlantAnim1.gif">
+                <img src="../media/PlantAnim3.gif">
+                <img src="../media/PlantAnim2.gif">
+                <img src="../media/PlantAnim3.gif">
+                <img src="../media/PlantAnim1.gif">
+            </div>
+        <img src="../media/LoadingBG.png">
+    </div>
+
+    <!-- Main Game -->
+    <section id="maingarden" class="gamewindow">
+    <!--NavButtons-->
+    <div class="TopMenu">
+        <div class="TopButtons">
+            <img src="../media/SettingsButton.png" />
+
+            <section id="settings-menu" class="gamewindow" style="display: none;">
+                <div class="set-box">
+                    <h2>Settings</h2>
+                    <hr>
+                    <div class="set-item">
+                        <h2>Music Volume</h2>
+                        <input type="range" min="0" max="100" value="50">
+                    </div>
+                    <button id="set-close">
+                        <img src="../media/ExitButtonOrange.png">
+                    </button>
+                </div>
+            </section>
+<!-- Background Button Functionality by Antoine -->
+            <img src="../media/BGButton.png" onclick="changeTheme()"/>
+            
+            <section id="save-menu">
+                <div class="saveclick">
+                <img src="../media/SaveButton.png" />
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!--Notepad/Tasklist Button-->
+    <div class="notepad">
+        <img src="../media/Notepad.png" />
+
+        <section id="taskwindow" class="gamewindow">
+            <div class="task-header">
+                <button id="add-t" class="task-tool-btn"><img src= "../media/Addbutton.png"></button>
+                <h1>TASKS</h1>
+                <button id="del-t" class="task-tool-btn"><img src= "../media/MinusButton.png"></button>
+            </div>
+            <div class="task-list"></div>
+    </section>
+    </div>
+
+    <!--Plant UI at bottom left-->
+    <div class = "BottomMenu">
+        <div class= "mainlogo">
+                <img src="../media/biotivityLogo.png"/>
+        </div>
+            <div class="EXPbar">
+                <img src="../media/ExpContainer.png">
+                <img src="../media/ExpFill.png">
+                <img src="../media/ExpTop.png">
+                <p class="expcounter">0<br>/100</p>
+            </div>
+        <div class= "BottomButtons">
+            <img src="../media/DeleteButton.png" id="btn-delete"/>
+            <img src="../media/PlantButton.png" id="btn-plant"/>
+        </div>
+    </div>
+    
+
+    <!--plant icons-->
+    <div class="EXPIcons">
+        <div class="expspot-1">
+        <img src="../media/LevelUpIcon.png" class="EXPStyle"/>
+        <img src="../media/NeedWaterIcon.png" class="EXPStyle"/>
+        </div>
+        <div class="expspot-2">
+        <img src="../media/LevelUpIcon.png" class="EXPStyle"/>
+        <img src="../media/NeedWaterIcon.png" class="EXPStyle"/>
+        </div>
+        <div class="expspot-3">
+        <img src="../media/LevelUpIcon.png" class="EXPStyle"/>
+        <img src="../media/NeedWaterIcon.png" class="EXPStyle"/>
+        </div>
+        <div class="expspot-4">
+        <img src="../media/LevelUpIcon.png" class="EXPStyle"/>
+        <img src="../media/NeedWaterIcon.png" class="EXPStyle"/>
+        </div>
+    </div>
+
+    <!--plants-->
+    <div class="plantspot-1">
+        <img src="../media/Dirt.png" class="dirtpatch"/>
+        <img src="../media/PlantSprout.png" class="plant-style"/>
+    </div>
+
+    <div class="plantspot-2">
+        <img src="../media/Dirt.png" class="dirtpatch"/>
+        <img src="../media/PlantYoung.png" class="plant-style"/>
+    </div>
+
+    <div class="plantspot-3">
+        <img src="../media/Dirt.png" class="dirtpatch"/>
+        <img src="../media/PlantAdult.png" class="plant-style"/>
+    </div>
+
+    <div class="plantspot-4">
+        <img src="../media/Dirt.png" class="dirtpatch"/>
+    </div>
+
+    <div class="sun">
+        <img src="../media/SunDayCounter.png" />
+        <p class="daytrack">Day 1</p>
+    </div>
+    
+    <!--Lucky Button-->
+    <div class="lucky">
+        <img src="../media/LuckyDefault.png"/>
+    </div>
+    
+    <!--WateringCan-->
+    <div class= "watering">
+    <img src="../media/WateringCan.png"/>
+    </div>
+
+    </section>
+
+    <!-- v  SITE FUNCTIONALITY v -->
+    
+    <!-- Lucky Interaction -->
+
+    <section id="luckyhelp" class="gamewindow">
+        <div class="help-box">
+            <h2 class="lucky-greeting">
+                <span id="Greet1">Howdy Gardener,</span> 
+                <span id="Greet2" >how can I help ya?</span></h2>
+            
+            <div class="question-list">
+                <button class="q-btn" onclick="askLucky('water')">How do I water my plants?</button>
+                <button class="q-btn" onclick="askLucky('biotivity')">What IS Biotivity?</button>
+                <button class="q-btn" onclick="askLucky('delete')">How do I get rid of a plant?</button>
+
+            </div>
+
+            <div class="lucky-answer">
+                    <p id="luckyanswertxt"></p>
+            </div>
+        </div>
+        <img src="../media/LuckyWave.png" class="jumping-lucky">
+    </section>
+    <!-- Lucky Interaction -->
+
+    <!-- Save Overlay -->
+         <section id="savepop" class="saving">
+        <div class="save-content">
+
+            <img src="../media/RunRabbit.gif" class="saveicon">
+            <h1 id="savetxt">Saving...</h1>
+        </div>
+    </section>
+    <!-- Save Overlay -->
+
+
+<script>
+    /* Note from Lillian: This is where all the game's logic and functionality is. Please don't alter anything here.*/
+    
+    /* Loading Screen */
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('title');
+
+        setTimeout(() => {
+            loadingScreen.classList.add('fade-out');
+
+            setTimeout (() => {
+                loadingScreen.style.display = 'none';
+            }, 1000);
+        }, 1500);
+    });
+    
+    /* Theme Changer */
+    let altTheme = false;
+    function changeTheme() {
+        var alt = "url('../media/HomeAlt.png')";
+        var norm = "url('../media/biotivity_game_background.png')";
+        if (altTheme == true) {
+            altTheme = false;
+            document.body.style.backgroundImage = norm;  
+        } else {
+            document.body.style.backgroundImage = alt;
+            altTheme = true;
+        }
+       
+    }
+
+    /* Watering Mode */
+    const watering = document.querySelector('.watering');
+    const gameWindow = document.querySelector('#maingarden');
+    let isWateringMode = false;
+
+    watering.addEventListener('click', () => {
+        isWateringMode = true;
+        gameWindow.classList.add('watering-mode');
+        watering.classList.add('mode-tool');
+        console.log("Watering Mode: ON");
+    });
+
+    window.addEventListener('contextmenu', (e) => {
+        if (isWateringMode) {
+            event.preventDefault();
+            isWateringMode = false;
+            gameWindow.classList.remove('watering-mode');
+            watering.classList.remove('mode-tool');
+            watering.style.left = '';
+            watering.style.top = '';
+            watering.style.position = 'absolute';
+            console.log("Watering Mode: OFF");
+        }
+    });
+    window.addEventListener('mousemove', (e) => {
+        if (isWateringMode) {
+            watering.style.left = e.pageX + 'px';
+            watering.style.top = e.pageY + 'px';
+        }
+    });
+
+    /* Lucky's Help Desk Logic */
+    const luckyBtn = document.querySelector('.lucky');
+    const helpScreen = document.querySelector('#luckyhelp');
+    const luckyDisplay = document.querySelector('.jumping-lucky');
+    const greet2 = document.querySelector('#Greet2');
+
+    /* Opening Function */
+    luckyBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        luckyBtn.style.opacity = '0';
+        luckyBtn.style.pointerEvents= 'none';
+        helpScreen.style.display = 'flex';
+
+        setTimeout(() => {
+          helpScreen.classList.add('active');  
+        }, 10);
+
+        luckyDisplay.src = "../media/LuckyWave.png";
+        greet2.classList.remove('textpop');
+
+        setTimeout(() => {
+            luckyDisplay.src = "../media/LuckyHappy.png";
+            greet2.classList.add('textpop');
+        }, 600);
+    })
+
+    /* Answering Questions! */
+    const questions = document.querySelector('.question-list');
+    const answerbox = document.querySelector ('.lucky-answer');
+    const answertxt = document.querySelector ('#luckyanswertxt');
+    const luckythinker = document.querySelector ('.jumping-lucky');
+    const luckyhead = document.querySelector ('.lucky-greeting');
+
+    function askLucky(topic) {
+        questions.style.display = 'none';
+        luckyhead.style.opacity = '0';
+        luckythinker.src = "../media/LuckyThink.png";
+
+        setTimeout(() => {
+            answerbox.style.display = 'flex';
+
+            if (topic === 'water') {
+                answertxt.innerText = "Why, just click that there watering can and give em a drink! Remember, you can get water fer ya plants by completin' tasks!";
+            } else if  (topic === 'biotivity') {
+                answertxt.innerText = "Biotivity's a productivity-enhancin' gamer-fied task list! Yuh can have a bit o' self-disciplined fun while gettin' yer chores ticked off!";
+            } else if (topic === 'delete') {
+                answertxt.innerText = "Ah, yah wanted to remove one of em'? Just click that there shovel-lookin' button on the bottom - keep in mind, any EXP used up will go with the lil' darlin!";
+            }
+            
+            setTimeout(() => {
+                backTop();
+            }, 3500);
+        });
+    }
+
+    function backTop() {
+        if (answerbox.style.display === 'flex') {
+            answerbox.style.display = 'none';
+            questions.style.display = 'flex';
+            luckyhead.style.opacity = '1';
+            luckythinker.src = "../media/LuckyHappy.png";
+        }
+    }
+
+    /* Closing Function */
+    luckyDisplay.addEventListener('click', (e) => {
+        helpScreen.classList.remove('active');
+        e.stopPropagation();
+
+        setTimeout (() => {
+            helpScreen.style.display = 'none';
+
+            luckyBtn.style.opacity = '1';
+            luckyBtn.style.pointerEvents = 'auto';
+        }, 300);
+    })
+
+    /* Task Opener & System Logic */
+
+    const notepad = document.querySelector('.notepad');
+    const addBtn = document.querySelector('#add-t');
+    const delBtn = document.querySelector('#del-t');
+    const taskList = document.querySelector('.task-list');
+        
+        /* Open/Close Toggle */
+        notepad.addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG' && e.target.parentElement === notepad) {
+                notepad.classList.toggle('is-open');
+            }
+        });
+
+        /* Task Addition */
+        addBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            /* Task Limiter */
+            const maxTasks = 9;
+            const currentTasks = taskList.querySelectorAll('.task-item').length;
+
+            if (currentTasks >=maxTasks) {
+                notepad.classList.add('wiggle');
+                setTimeout(() => notepad.classList.remove('wiggle'), 500);
+                alert ("Your notepad is full! Finish or delete a task.");
+                return;
+            }
+
+            const val = prompt ("New task:");
+            if (!val) return;
+
+            const div = document.createElement('div');
+            div.className = 'task-item';
+            div.innerHTML = `
+            <span>${val}</span>
+            <div class="task-btn-group">
+                <button class="finish-btn"><img src= ../media/Acceptbutton.png></button>
+                <button class="fail-btn"><img src= ../media/Cancelbutton.png></button>
+            </div>
+            `;
+
+            taskList.appendChild(div);
+
+            /* Button Functions! */
+
+            /* Completion Logic */
+            div.querySelector('.finish-btn').onclick = () => {
+                div.style.textDecoration = 'line-through';
+                div.style.opacity = '0.5';
+                
+                setTimeout(() => {
+                    div.style.transition = "opacity 0.5s";
+                    div.style.opacity = "0";
+                    setTimeout(() => div.remove(), 600);
+                }, 1200);
+
+                /* Could add EXP gain logic here*/
+            };
+
+            /* Fail Logic */
+            div.querySelector('.fail-btn').onclick = (e) => {
+                e.stopPropagation();
+
+                div.style.color = 'red';
+                div.classList.add('wiggle');
+
+                void div.offsetWidth;
+
+                setTimeout(() => { 
+                    
+                    div.classList.remove('wiggle');
+                    div.style.transition = "opacity 0.5s ease";
+                    div.style.opacity = "0";
+
+                    setTimeout(() => { 
+                        div.remove(); 
+                    }, 500);
+                }, 600);
+            };   
+        });
+
+        /* Deletes Oldest Task */
+        delBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            const oldest = taskList.firstElementChild;
+
+            if (oldest) {
+                oldest.remove();
+            }
+        })
+
+    /* Save System */
+
+    const savebtn = document.querySelector('#save-menu');
+    const savepopup = document.querySelector('#savepop');
+    const savetext = document.querySelector('#savetxt');
+
+    savebtn.addEventListener('click', () => {
+        savepopup.style.display = 'flex';
+        setTimeout(() => {
+            savepopup.classList.add('active');
+        }, 20);
+
+        savetext.innerText = "Saving Your Garden...";
+
+        setTimeout(() => {
+            savetext.innerText = "Saved! Good Night!";
+
+            setTimeout(() => {
+                savepopup.classList.remove('active');
+                setTimeout(() => {
+                    savepopup.style.display = 'none';
+                }, 400);
+            }, 800);
+        }, 1500);
+    });
+
+    /* Settings Popup */
+const settingsboop = document.querySelector('.TopButtons img:first-child');
+const settingsmenu = document.querySelector('#settings-menu');
+const settingsclose = document.querySelector('#set-close');
+
+    settingsboop.addEventListener('click', () => {
+        settingsmenu.style.display = 'flex';
+    });
+
+    settingsclose.addEventListener('click', () => {
+        settingsmenu.style.display = 'none';
+    });
+
+/* Bottom Button Tool Toggling */
+const btnDelete = document.querySelector('#btn-delete');
+const btnPlant = document.querySelector('#btn-plant');
+const gardenArea = document.querySelector('#maingarden');
+
+// Only resets the Plant and Delete states
+function resetBottomTools() {
+    btnDelete.classList.remove('tool-active');
+    btnPlant.classList.remove('tool-active');
+    gardenArea.classList.remove('delete-cursor', 'plant-cursor');
+}
+
+// Delete Button Toggle
+btnDelete.addEventListener('click', () => {
+    const wasActive = btnDelete.classList.contains('tool-active');
+    
+    // If it was on, turn it off. If it was off, clear the other and turn this on.
+    if (wasActive) {
+        resetBottomTools();
+    } else {
+        resetBottomTools();
+        btnDelete.classList.add('tool-active');
+        gardenArea.classList.add('delete-cursor');
+    }
+});
+
+// Plant Button Toggle
+btnPlant.addEventListener('click', () => {
+    const wasActive = btnPlant.classList.contains('tool-active');
+    
+    if (wasActive) {
+        resetBottomTools();
+    } else {
+        resetBottomTools();
+        btnPlant.classList.add('tool-active');
+        gardenArea.classList.add('plant-cursor');
+    }
+});
+
+// Right-click to cancel ONLY these tools
+window.addEventListener('contextmenu', (e) => {
+    // Only prevent default and reset if one of these tools is actually active
+    if (btnDelete.classList.contains('tool-active') || btnPlant.classList.contains('tool-active')) {
+        e.preventDefault();
+        resetBottomTools();
+    }
+});
+
+</script>
+</body>
+</html>
